@@ -23,7 +23,7 @@ It allows users (both Admin and Customers) to perform essential banking operatio
 ---
 
 ## 🧱 Class Structure (UML Diagram)
-![UML Diagram](A_UML_(Unified_Modeling_Language)Project.svg)
+![UML Diagram](UML(Project.svg))
 
 ### **Classes**
 1. **Account**

@@ -279,7 +279,7 @@ public:
                     break;
                 case 4:
                     cout << "Logging out...\n";
-                    system("clear");
+                    system("clear");  // for window use system("cls");
 
                     break;
                 default:

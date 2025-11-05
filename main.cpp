@@ -11,7 +11,7 @@ private:
 public:
     Transaction(string t, double a) : type(t), amount(a) {}
     void display() const {
-        cout << type << " of " << amount << " units\n";
+        cout << type << " of " << amount << " Rupees\n";
     }
 };
 
@@ -279,6 +279,8 @@ public:
                     break;
                 case 4:
                     cout << "Logging out...\n";
+                    system("clear");
+
                     break;
                 default:
                     cout << "Invalid choice!\n";
@@ -314,6 +316,8 @@ public:
                     break;
                 case 5:
                     cout << "Logging out...\n";
+                    system("clear");
+
                     break;
                 default:
                     cout << "Invalid choice!\n";
@@ -324,6 +328,7 @@ public:
     void loginSystem() {
         int choice;
         do {
+            cout << "\n====== WELCOME TO SAHARA BANK ======\n";
             cout << "\n====== BANK LOGIN ======\n";
             cout << "1. Admin Login\n2. User Login\n3. Exit\n";
             cout << "Enter choice: ";

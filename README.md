@@ -1,55 +1,179 @@
-# 🏦 Simple Bank Management System (C++)
+# 🏦 Bank Management System (C++ OOP Project)
 
-## 📘 Overview
-This project is a **console-based Bank Management System** developed in **C++** using **Object-Oriented Programming (OOP)** concepts.  
-It allows users (both Admin and Customers) to perform essential banking operations such as account creation, deposit, withdrawal, and account management.
+## 👨‍💻 Developed By
+**Manas Soni** 
+**Meenu Raghuwanshi**
 
----
-
-## ⚙️ Features
-
-### 👨‍💼 Admin Functions
-- Create a new bank account  
-- Delete an existing account  
-- View all customer accounts  
-- Search for an account by account number  
-
-### 👤 User Functions
-- Log in using an account number  
-- View account details and balance  
-- Deposit money  
-- Withdraw money  
 
 ---
 
-## 🧱 Class Structure (UML Diagram)
-![UML Diagram](UML(Project.svg))
+## 📘 Project Overview
 
-### **Classes**
-1. **Account**
-   - Represents a single customer's account.  
-   - Handles deposits, withdrawals, and displays account details.  
+This project is a **Bank Management System** developed in **C++**, designed to simulate real-world banking operations.  
+It allows **Admins** to create, delete, and view customer accounts, while **Users (Customers)** can log in to manage their own bank accounts by depositing, withdrawing, and viewing transaction history.
 
-2. **Bank**
-   - Manages a collection of accounts.  
-   - Handles account creation, deletion, searching, and viewing all accounts.  
-
-3. **Global Functions**
-   - `clearScreen()` – Clears the console screen.  
-   - `showAdminDash()` – Displays the admin interface.  
-   - `showUserDash()` – Displays the user interface.  
+The project demonstrates the use of **Object-Oriented Programming (OOP)** principles such as **Abstraction**, **Encapsulation**, **Inheritance**, and **Polymorphism** through a modular and extensible class hierarchy.
 
 ---
 
-## 🧩 Object-Oriented Concepts Used
-- **Encapsulation:**  
-  Account data (like `balance`, `ownerName`, etc.) is private and accessed through public methods.  
+## ⚙️ Working of the Project
 
-- **Abstraction:**  
-  Complex operations (like managing multiple accounts) are abstracted behind class methods.  
+### 🔑 Main Features
+- **Admin Login:**
+  - Create new Savings or Current Accounts.
+  - Delete existing accounts.
+  - Display all account details.
 
-- **Composition:**  
-  `Bank` class contains a collection (`vector`) of `Account` objects.  
+- **User Login:**
+  - Deposit and withdraw money.
+  - View account information.
+  - Check transaction history.
+
+### 🧭 Flow of Execution
+1. The program starts with the **loginSystem()** function.
+2. User chooses between **Admin Login**, **User Login**, or **Exit**.
+3. If **Admin** logs in:
+   - Admin can create accounts with unique account numbers.
+   - Admin can assign usernames/passwords for customers.
+4. If **User** logs in:
+   - User can perform operations like deposit, withdraw, and view transactions.
+5. The system continues until the user chooses to exit.
 
 ---
 
+## 🧩 OOP Concepts Used
+
+### 1. Encapsulation
+Each class bundles data and related operations together.  
+Example:  
+- The `Customer` class encapsulates personal details (name, address, phone).
+- The `Account` class encapsulates account data and transaction behavior.
+
+### 2. Abstraction
+Abstract class `Account` hides common account details while providing a general interface.  
+Functions like `deposit()`, `withdraw()`, and `displayAccountInfo()` are defined in base and specialized in derived classes.
+
+### 3. Inheritance
+`SavingsAccount` and `CurrentAccount` classes **inherit** from the base abstract class `Account`.  
+They override the `withdraw()` and `deposit()` methods with their specific rules.
+
+### 4. Polymorphism
+Implemented through **virtual functions** and **dynamic binding**.  
+- `Account* acc` can point to either a `SavingsAccount` or `CurrentAccount`.
+- Calls like `acc->withdraw()` execute the correct version at runtime.
+
+### 5. Composition (Has-a Relationship)
+- `Account` **has-a** `Customer` (each account belongs to one customer).
+- `Account` **has-a** list of `Transaction` objects.
+- `Bank` **has-a** collection of `Account*` and `User` objects.
+
+### 6. Constructor Overloading
+Constructors are overloaded in several classes (`Customer`, `User`, `Account`, etc.) for flexible object creation.
+
+### 7. Data Hiding
+Private data members like `balance`, `password`, and `transactions` are protected from direct external access.
+
+---
+
+## 🧱 Class Relationships
+
+| Class | Type | Relationship | Description |
+|:------|:------|:-------------|:-------------|
+| **Bank** | Controller | Has-a → `Account`, `User`, `Admin` | Central class that manages the system |
+| **Admin** | Entity | Used-by → `Bank` | Handles account creation/deletion |
+| **User** | Entity | Associated-with → `Account` | Represents login credentials for customers |
+| **Customer** | Entity | Aggregated-by → `Account` | Represents customer’s personal data |
+| **Account (Abstract)** | Base Class | Parent of → `SavingsAccount`, `CurrentAccount` | Common account structure |
+| **SavingsAccount** | Derived Class | Inherits-from → `Account` | Adds interest rate handling |
+| **CurrentAccount** | Derived Class | Inherits-from → `Account` | Adds overdraft limit |
+| **Transaction** | Helper Class | Contained-in → `Account` | Records deposits and withdrawals |
+
+### Diagram Summary (Text-based UML)
+
+```
+                +----------------------+
+                |       Bank           |
+                +----------------------+
+                | - accounts[]         |
+                | - users[]            |
+                | - admin              |
+                +----------------------+
+                         |
+                         | manages
+                         ▼
+          +---------------------------+
+          |        Account (abstract) |
+          +---------------------------+
+          | #accountNumber            |
+          | #balance                  |
+          | #owner: Customer          |
+          | #transactions[]           |
+          +---------------------------+
+          | +deposit()                |
+          | +withdraw()=0             |
+          +---------------------------+
+             ▲                    ▲
+             |                    |
+ +--------------------+   +--------------------+
+ |  SavingsAccount    |   |  CurrentAccount    |
+ +--------------------+   +--------------------+
+ | +interestRate      |   | +overdraftLimit    |
+ | +deposit() override|   | +withdraw() override|
+ +--------------------+   +--------------------+
+ 
+ +-------------+     +------------+
+ |  Customer   |     | Transaction|
+ +-------------+     +------------+
+ | name        |     | type       |
+ | address     |     | amount     |
+ +-------------+     +------------+
+ 
+ +----------+
+ |  User    |
+ +----------+
+ | username |
+ | password |
+ +----------+
+
+ +----------+
+ |  Admin   |
+ +----------+
+ | username |
+ | password |
+ +----------+
+```
+
+---
+
+## 🧪 Technologies Used
+- **Language:** C++  
+- **Paradigm:** Object-Oriented Programming  
+- **Compiler:** g++  
+- **Header Files:** `<iostream>`, `<vector>`, `<string>`  
+
+---
+
+## 🧠 Key Highlights
+- Fully modular, scalable, and menu-driven system.
+- Demonstrates real-world OOP implementation.
+- Separates admin and user functionalities for clarity.
+- Uses dynamic memory management (`new` and `delete`) for runtime account handling.
+
+---
+
+## 🚀 How to Run
+
+1. Copy the code into a file named `BankManagement.cpp`.
+2. Compile using:  
+   ```bash
+   g++ BankManagement.cpp -o bank
+   ```
+3. Run the executable:  
+   ```bash
+   ./bank
+   ```
+4. Use:
+   - **Admin Login:**  
+     Username: `___manas_soni`  
+     Password: `12345678`  
+   - **User Login:** Use credentials created by the admin.

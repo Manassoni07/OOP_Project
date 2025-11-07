@@ -1,8 +1,9 @@
 # 🏦 Bank Management System (C++ OOP Project)
 
 ## 👨‍💻 Developed By
--**Manas Soni** 
--**Meenu Raghuwanshi**
+**Manas Soni** 
+** and **
+**Meenu Raghuwanshi**
 
 
 ---

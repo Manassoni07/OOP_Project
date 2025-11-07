@@ -88,62 +88,7 @@ Private data members like `balance`, `password`, and `transactions` are protecte
 | **CurrentAccount** | Derived Class | Inherits-from → `Account` | Adds overdraft limit |
 | **Transaction** | Helper Class | Contained-in → `Account` | Records deposits and withdrawals |
 
-### Diagram Summary (Text-based UML)
 
-```
-                +----------------------+
-                |       Bank           |
-                +----------------------+
-                | - accounts[]         |
-                | - users[]            |
-                | - admin              |
-                +----------------------+
-                         |
-                         | manages
-                         ▼
-          +---------------------------+
-          |        Account (abstract) |
-          +---------------------------+
-          | #accountNumber            |
-          | #balance                  |
-          | #owner: Customer          |
-          | #transactions[]           |
-          +---------------------------+
-          | +deposit()                |
-          | +withdraw()=0             |
-          +---------------------------+
-             ▲                    ▲
-             |                    |
- +--------------------+   +--------------------+
- |  SavingsAccount    |   |  CurrentAccount    |
- +--------------------+   +--------------------+
- | +interestRate      |   | +overdraftLimit    |
- | +deposit() override|   | +withdraw() override|
- +--------------------+   +--------------------+
- 
- +-------------+     +------------+
- |  Customer   |     | Transaction|
- +-------------+     +------------+
- | name        |     | type       |
- | address     |     | amount     |
- +-------------+     +------------+
- 
- +----------+
- |  User    |
- +----------+
- | username |
- | password |
- +----------+
-
- +----------+
- |  Admin   |
- +----------+
- | username |
- | password |
- +----------+
-```
-
----
 
 ## 🧪 Technologies Used
 - **Language:** C++  
